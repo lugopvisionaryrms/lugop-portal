@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUGOP Report Portal</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe id="reportIframe" src="" allow="geolocation; microphone; camera"></iframe>
+
+    <script>
+        // Get school from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const schoolCode = urlParams.get('school');
+
+        // Report Portal Base Script URL
+        const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbwwSN3nPb9BTtblvnsPaG_r2WIAezI0L045IGvucUJ9h6WLiZkcfEiTqUCd6BSeFcm_/exec";
+
+        // Build final URL
+        let finalUrl = scriptBaseUrl;
+        if (schoolCode) {
+            finalUrl += "?school=" + encodeURIComponent(schoolCode);
+        }
+
+        // Load in iframe
+        document.getElementById('reportIframe').src = finalUrl;
+    </script>
+
+</body>
+</html>
