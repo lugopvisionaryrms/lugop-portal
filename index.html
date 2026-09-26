@@ -1,13 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUGOP Visionary Portal</title>
     <style>
-        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
-        iframe { border: none; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 999999; }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <iframe src="https://script.google.com/macros/s/AKfycbwKKXfGmxSEyWOwWrzqT_BWn5Kg5wzWYsrdiC4ThmsWFjqc52PxWSVGb__tzBLvnN1fyw/exec?school=thunga%20cdss"></iframe>
+
+    <iframe id="portalIframe" src="" allow="geolocation; microphone; camera"></iframe>
+
+    <script>
+        // 1. Get the 'school' parameter from the GitHub URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const schoolCode = urlParams.get('school');
+
+        // 2. Your Base Google Apps Script Exec URL
+        const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbwKKXfGmxSEyWOwWrzqT_BWn5Kg5wzWYsrdiC4ThmsWFjqc52PxWSVGb__tzBLvnN1fyw/exec";
+
+        // 3. Build final URL with school parameter
+        let finalScriptUrl = scriptBaseUrl;
+        if (schoolCode) {
+            finalScriptUrl += "?school=" + encodeURIComponent(schoolCode);
+        }
+
+        // 4. Load inside iframe
+        document.getElementById('portalIframe').src = finalScriptUrl;
+    </script>
+
 </body>
 </html>
